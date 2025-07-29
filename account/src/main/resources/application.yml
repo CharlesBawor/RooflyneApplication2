@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: account-service  # The name of this microservice (used by Eureka and logs)
+
+  datasource:
+    url: jdbc:h2:mem:account_tes_db  # In-memory H2 database for testing/development
+    driver-class-name: org.h2.Driver
+    username: sa  # Default username for H2
+    password: ""  # No password
+  h2:
+    console:
+      enabled: true  # Enables H2 browser console
+      path: /h2-console  # Accessible at http://localhost:8081/h2-console
+
+#  jpa:
+#    show-sql: true  # Log all SQL statements to the console
+#    hibernate:
+#      ddl-auto: update  # Auto create/update database schema on startup
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL8Dialect  # MySQL dialect (for compatibility testing)
+
+server:
+  port: 8081  # App will run on port 8081
+  error:
+    include-message: always  # Include detailed error messages in response
+
+springdoc:
+  api-docs:
+    path: /api-docs  # OpenAPI JSON path
+  swagger-ui:
+    path: /swagger-ui.html  # Swagger UI path
+    operationsSorter: method  # Sort operations by HTTP method
+    tagsSorter: alpha  # Sort tags alphabetically
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  # Expose all actuator endpoints (e.g., /actuator/health)
+  endpoint:
+    health:
+      show-details: always  # Show detailed health info
+
+
+logging:
+  level:
+    root: INFO  # Root logging level
